@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    width: 75%;
+    margin: auto;
+    padding: 3%;
+    border-bottom: 1px solid grey;
+    font-family: 'Montserrat', sans-serif;
+}
+img {
+    border-radius: 50%;
+    width: 25%;
+    border: 1px solid grey;
+}
+h1 {
+    margin: auto;
+    padding: 3px;
+}
+.infoContainer {
+    margin: 3%;
+}
+ul {
+    margin: 0;
+    list-style: none;
+}
