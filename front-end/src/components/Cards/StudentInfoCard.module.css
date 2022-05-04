@@ -1,19 +1,21 @@
 .container {
     display: flex;
-    width: 75%;
-    margin: auto;
-    padding: 3%;
+    width: 100%;
     border-bottom: 1px solid grey;
     font-family: 'Montserrat', sans-serif;
 }
+
 img {
     border-radius: 50%;
-    width: 25%;
+    width: 15%;
+    height: 15%;
+    margin: 5% 0px 5% 5%;
     border: 1px solid grey;
 }
 h1 {
     margin: auto;
     padding: 3px;
+    font-size: 2.5rem;
 }
 .infoContainer {
     margin: 3%;

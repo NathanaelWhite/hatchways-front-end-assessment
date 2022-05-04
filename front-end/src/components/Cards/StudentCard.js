@@ -1,10 +1,9 @@
 import React from "react";
 import styles from "./StudentInfoCard.module.css";
 
-const StudentCard = ({ students }) => {
-  console.log("student card:", students);
+const StudentCard = ({ students, findGradeAverage }) => {
   return (
-    <div>
+    <div className={styles.studentSection}>
       {students.map((student, key) => (
         <div key={key} className={styles.container}>
           <img
@@ -19,7 +18,7 @@ const StudentCard = ({ students }) => {
                 <li>Email: {student.email}</li>
                 <li>Company: {student.company}</li>
                 <li>Skill: {student.skill}</li>
-                <li>Average: 69%</li>
+                <li>Average: {findGradeAverage(student.grades)}%</li>
               </ul>
             </div>
           </div>
