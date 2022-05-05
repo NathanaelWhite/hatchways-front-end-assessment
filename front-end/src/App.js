@@ -6,7 +6,7 @@ import NameSearchBar from "./components/SearchBar/SearchBar";
 function App() {
   // setting the initial state for students and search bars
   const [students, setStudents] = useState([]);
-  const [nameFilter, setNameFilter] = useState("");
+  const [nameInput, setNameInput] = useState("");
 
   // fetching student data from the API
   const fetchData = () => {
@@ -43,18 +43,21 @@ function App() {
       if (fullName.includes(input)) {
         filteredName.push(student);
       }
-      setNameFilter(filteredName);
     });
+    return filteredName;
   };
+  const studentNameFilter = searchByName(nameInput);
 
   return (
     <div className={styles.App}>
       <div className={styles.main}>
-        <NameSearchBar searchByName={searchByName} handleSearch={setNameFilter} />
-        <StudentCard students={nameFilter} findGradeAverage={findGradeAverage} />
+        <NameSearchBar handleSearch={setNameInput} />
+        <StudentCard students={studentNameFilter} findGradeAverage={findGradeAverage} />
       </div>
     </div>
   );
 }
+
+// searchByName={searchByName}
 
 export default App;
