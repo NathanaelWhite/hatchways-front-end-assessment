@@ -1,26 +1,45 @@
-.container {
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid grey;
-    font-family: 'Montserrat', sans-serif;
-}
-
-img {
-    border-radius: 50%;
-    width: 15%;
-    height: 15%;
-    margin: 5% 0px 5% 5%;
-    border: 1px solid grey;
-}
-h1 {
-    margin: auto;
-    padding: 3px;
-    font-size: 2.5rem;
+.studentContainer {
+  display: flex;
 }
 .infoContainer {
-    margin: 3%;
+  flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px solid rgb(224, 222, 222);
+  font-family: "Montserrat", sans-serif;
+}
+img {
+  border-radius: 50%;
+  width: 20%;
+  height: 20%;
+  margin: 5% 0px 3% 3%;
+  border: 1px solid grey;
+}
+.header {
+  display: flex;
+  width: 100%;
+  margin-right: 5px;
+}
+h1 {
+  margin: auto;
+  margin-left: 3%;
+  padding: 3px;
+  font-size: 2.5rem;
 }
 ul {
-    margin: 0;
-    list-style: none;
+  margin: 0;
+  list-style: none;
+  padding-left: 10%;
+}
+.gradeBtn {
+  color: rgb(180, 179, 179);
+  background-color: #ffff;
+  font-size: 4rem;
+  border: none;
+  cursor: pointer;
+  padding-right: 3%;
+}
+
+.gradeBtn:hover {
+  color: black;
+  cursor: pointer;
 }

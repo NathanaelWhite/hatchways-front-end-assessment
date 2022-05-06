@@ -3,17 +3,18 @@ import styles from "./StudentInfoCard.module.css";
 
 const StudentCard = ({ students, findGradeAverage }) => {
   return (
-    <div className={styles.studentSection}>
+    <div className={styles.container}>
       {students.map((student, key) => (
-        <div key={key} className={styles.container}>
-          <img
-            src={student.pic}
-            className="avatar"
-            alt="student avatar"
-          />
+        <div key={key} className={styles.studentContainer}>
+          <img src={student.pic} className="avatar" alt="student avatar" />
           <div className={styles.infoContainer}>
-            <h1 className="studentName">{student.firstName.toUpperCase()} {student.lastName.toUpperCase()}</h1>
-            <div className="studentInfo">
+            <div className={styles.header}>
+            <h1 className="studentName">
+              {student.firstName.toUpperCase()} {student.lastName.toUpperCase()}
+            </h1>
+            <button className={styles.gradeBtn}>+</button>
+            </div>
+            <div className="studentStats">
               <ul>
                 <li>Email: {student.email}</li>
                 <li>Company: {student.company}</li>
