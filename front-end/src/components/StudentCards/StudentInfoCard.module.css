@@ -1,10 +1,10 @@
 .studentContainer {
   display: flex;
+  border-bottom: 1px solid rgb(224, 222, 222);
 }
 .infoContainer {
   flex-wrap: wrap;
   width: 100%;
-  border-bottom: 1px solid rgb(224, 222, 222);
   font-family: "Montserrat", sans-serif;
 }
 img {
@@ -27,6 +27,7 @@ h1 {
 }
 ul {
   margin: 0;
+  margin-bottom: 3%;
   list-style: none;
   padding-left: 10%;
 }
@@ -42,4 +43,25 @@ ul {
 .gradeBtn:hover {
   color: black;
   cursor: pointer;
+}
+
+.tagContainer {
+  display: flex;
+  padding-left: 10%;
+}
+.tag {
+  margin-right: 3px;
+  padding: 3px;
+  background-color: rgb(180, 179, 179);
+  border-radius: 5px;
+}
+.tagInput {
+  font-size: 1rem;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  padding: 0;
+  width: 30%;
+  border: none;
+  border-bottom: 1px solid rgb(224, 222, 222);
+  height: 30px;
 }

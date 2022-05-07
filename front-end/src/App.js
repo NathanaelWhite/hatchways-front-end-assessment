@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import StudentCard from "./components/Cards/StudentCard";
+import StudentCard from "./components/StudentCards/StudentCard.js";
 import styles from "./App.module.css";
-import NameSearchBar from "./components/SearchBar/SearchBar";
+import NameSearchBar from "./components/NameSearchBar/NameSearchBar.js";
+import TagSearchBar from "./components/TagSearchBar/TagSearchBar.js";
 
 function App() {
   // setting the initial state for students and search bars
@@ -52,6 +53,7 @@ function App() {
     <div className={styles.App}>
       <div className={styles.main}>
         <NameSearchBar handleSearch={setNameInput} />
+        <TagSearchBar/>
         <StudentCard students={studentNameFilter} findGradeAverage={findGradeAverage} />
       </div>
     </div>
