@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import styles from "./StudentInfoCard.module.css";
 
-const StudentCard = ({ students, findGradeAverage }) => {
+const StudentCard = ({ students, student, findGradeAverage, createTag }) => {
   const [showGrades, setShowGrades] = useState(false);
+  const [tagName, setTagName] = useState("");
+  
+  // const addTag = () => {
+  //   createTag(student, tagName);
+  // };
 
   return (
     <div className={styles.container}>
@@ -16,7 +21,7 @@ const StudentCard = ({ students, findGradeAverage }) => {
                 {student.lastName.toUpperCase()}
               </h1>
               <button
-                onClick={() => setShowGrades(!showGrades)}
+                onClick={() => {setShowGrades(!showGrades)}}
                 className={styles.gradeBtn}
               >
                 {showGrades ? "-" : "+"}
@@ -41,11 +46,28 @@ const StudentCard = ({ students, findGradeAverage }) => {
                     );
                   })}
               </ul>
-              <div className={styles.tagContainer}>
-                <div className={styles.tag}>hello</div>
-                <div className={styles.tag}>goodbye</div>
+              {/* <div className={styles.tagContainer}>
+                {student.map((tag, i) => {
+                  return (
+                    <div className="tag" key={i}>
+                      {tag}
+                    </div>
+                  );
+                })}
               </div>
-              <input className={styles.tagInput} placeholder="Add a tag" />
+              <input
+                onChange={(e) => {
+                  setTagName(e.target.value);
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    addTag();
+                    e.target.value = "";
+                  }
+                }}
+                className={styles.tagInput}
+                placeholder="Add a tag"
+              /> */}
             </div>
           </div>
         </div>

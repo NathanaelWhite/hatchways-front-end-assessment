@@ -31,7 +31,6 @@ function App() {
     return average;
   };
 
-
   // function to search for a student by name
   const searchByName = (input) => {
     let filteredName = [];
@@ -49,17 +48,33 @@ function App() {
   };
   const studentNameFilter = searchByName(nameInput);
 
+  // ------------- EXPLAIN LATER
+  const createTag = (student, newTag) => {
+    student.tags.push(newTag);
+
+    const indexOfStudent = students.findIndex((s) => s.id === student.id);
+    let studentDataWithChanges = [
+      ...students.slice(0, indexOfStudent),
+      student,
+      ...students.slice(indexOfStudent + 1),
+    ];
+    setStudents(studentDataWithChanges);
+  };
+  //---------------- EXPLAIN LATER
+
   return (
     <div className={styles.App}>
       <div className={styles.main}>
         <NameSearchBar handleSearch={setNameInput} />
-        <TagSearchBar/>
-        <StudentCard students={studentNameFilter} findGradeAverage={findGradeAverage} />
+        <TagSearchBar />
+        <StudentCard
+          students={studentNameFilter}
+          findGradeAverage={findGradeAverage}
+          createTag={createTag}
+        />
       </div>
     </div>
   );
 }
-
-// searchByName={searchByName}
 
 export default App;
