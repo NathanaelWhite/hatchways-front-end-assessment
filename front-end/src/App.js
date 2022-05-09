@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import StudentCard from "./components/StudentCards/StudentCard.js";
+import Students from "./components/StudentCards/Students";
 import styles from "./App.module.css";
 import NameSearchBar from "./components/NameSearchBar/NameSearchBar.js";
 import TagSearchBar from "./components/TagSearchBar/TagSearchBar.js";
@@ -10,10 +10,15 @@ function App() {
   const [nameInput, setNameInput] = useState("");
 
   // fetching student data from the API
-  const fetchData = () => {
-    fetch("https://api.hatchways.io/assessment/students")
-      .then((res) => res.json())
-      .then((data) => setStudents(data.students));
+  async function fetchData() {
+    const res = await fetch("https://api.hatchways.io/assessment/students")
+    const data = await res.json();
+    const students = data.students;
+    // adding a tags array to each student that gets returned
+      students.forEach((student) => {
+        student.tags = [];
+      })
+      setStudents(students);
   };
 
   // calling the fetch function when the app initially loads with useEffect hook
@@ -48,6 +53,7 @@ function App() {
   };
   const studentNameFilter = searchByName(nameInput);
 
+  // function to create a tag and update the student data
   // ------------- EXPLAIN LATER
   const createTag = (student, newTag) => {
     student.tags.push(newTag);
@@ -62,12 +68,14 @@ function App() {
   };
   //---------------- EXPLAIN LATER
 
+
+  // ----- return statement
   return (
     <div className={styles.App}>
       <div className={styles.main}>
         <NameSearchBar handleSearch={setNameInput} />
         <TagSearchBar />
-        <StudentCard
+        <Students
           students={studentNameFilter}
           findGradeAverage={findGradeAverage}
           createTag={createTag}
