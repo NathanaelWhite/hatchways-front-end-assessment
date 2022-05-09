@@ -59,7 +59,7 @@ function App() {
     if (tagInput && tagInput.toUpperCase) {
       tagInput = tagInput.toUpperCase();
     }
-    
+
     students.forEach((student) => {
       let tagExists = false;
       student.tags.forEach((tag) => {
@@ -76,19 +76,7 @@ function App() {
     return filteredTags;
   };
 
-  const nameSearchResults = searchByName(nameFilter);
-  const tagSearchResults = searchByTag(tagFilter);
-  const fullSearchResults = [];
-
-  // adding tag search array to name search array
-  nameSearchResults.forEach((student) => {
-    if (tagSearchResults.includes(student)) {
-      fullSearchResults.push(student);
-    }
-  });
-
   // function to create a tag and update the student data
-  // ------------- EXPLAIN LATER
   const createTag = (student, newTag) => {
     student.tags.push(newTag);
 
@@ -100,8 +88,18 @@ function App() {
     ];
     setStudents(studentDataWithChanges);
   };
-  //---------------- EXPLAIN LATER
-  console.log(students);
+
+  // combining search arrays 
+  const nameSearchResults = searchByName(nameFilter);
+  const tagSearchResults = searchByTag(tagFilter);
+  const fullSearchResults = [];
+
+  nameSearchResults.forEach((student) => {
+    if (tagSearchResults.includes(student)) {
+      fullSearchResults.push(student);
+    }
+  });
+
   // ----- return statement
   return (
     <div className={styles.App}>
