@@ -7,19 +7,20 @@ import TagSearchBar from "./components/TagSearchBar/TagSearchBar.js";
 function App() {
   // setting the initial state for students and search bars
   const [students, setStudents] = useState([]);
-  const [nameInput, setNameInput] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const [tagFilter, setTagFilter] = useState("");
 
   // fetching student data from the API
   async function fetchData() {
-    const res = await fetch("https://api.hatchways.io/assessment/students")
+    const res = await fetch("https://api.hatchways.io/assessment/students");
     const data = await res.json();
     const students = data.students;
     // adding a tags array to each student that gets returned
-      students.forEach((student) => {
-        student.tags = [];
-      })
-      setStudents(students);
-  };
+    students.forEach((student) => {
+      student.tags = [];
+    });
+    setStudents(students);
+  }
 
   // calling the fetch function when the app initially loads with useEffect hook
   useEffect(() => {
@@ -37,21 +38,54 @@ function App() {
   };
 
   // function to search for a student by name
-  const searchByName = (input) => {
-    let filteredName = [];
-    if (input && input.toUpperCase) {
-      input = input.toUpperCase();
+  const searchByName = (nameInput) => {
+    let filteredNames = [];
+    if (nameInput && nameInput.toUpperCase) {
+      nameInput = nameInput.toUpperCase();
     }
     students.forEach((student) => {
       const fullName = `${student.firstName} ${student.lastName}`.toUpperCase();
 
-      if (fullName.includes(input)) {
-        filteredName.push(student);
+      if (fullName.includes(nameInput)) {
+        filteredNames.push(student);
       }
     });
-    return filteredName;
+    return filteredNames;
   };
-  const studentNameFilter = searchByName(nameInput);
+
+  // function to search for a student by tags
+  const searchByTag = (tagInput) => {
+    let filteredTags = [];
+    if (tagInput && tagInput.toUpperCase) {
+      tagInput = tagInput.toUpperCase();
+    }
+    
+    students.forEach((student) => {
+      let tagExists = false;
+      student.tags.forEach((tag) => {
+        if (tag.toUpperCase().includes(tagInput)) {
+          tagExists = true;
+        }
+      });
+
+      if (!tagInput || tagExists) {
+        filteredTags.push(student);
+      }
+    });
+    console.log(filteredTags);
+    return filteredTags;
+  };
+
+  const nameSearchResults = searchByName(nameFilter);
+  const tagSearchResults = searchByTag(tagFilter);
+  const fullSearchResults = [];
+
+  // adding tag search array to name search array
+  nameSearchResults.forEach((student) => {
+    if (tagSearchResults.includes(student)) {
+      fullSearchResults.push(student);
+    }
+  });
 
   // function to create a tag and update the student data
   // ------------- EXPLAIN LATER
@@ -67,16 +101,15 @@ function App() {
     setStudents(studentDataWithChanges);
   };
   //---------------- EXPLAIN LATER
-
-
+  console.log(students);
   // ----- return statement
   return (
     <div className={styles.App}>
       <div className={styles.main}>
-        <NameSearchBar handleSearch={setNameInput} />
-        <TagSearchBar />
+        <NameSearchBar handleNameSearch={setNameFilter} />
+        <TagSearchBar handleTagSearch={setTagFilter} />
         <Students
-          students={studentNameFilter}
+          students={fullSearchResults}
           findGradeAverage={findGradeAverage}
           createTag={createTag}
         />

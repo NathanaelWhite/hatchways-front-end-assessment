@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
-const NameSearchBar = ({ handleSearch }) => {
+const NameSearchBar = ({ handleNameSearch }) => {
   return (
     <div className={styles.searchContainer}>
       <input
-        onChange={(e) => handleSearch(e.target.value)}
+        onChange={(e) => handleNameSearch(e.target.value)}
         type="text"
         placeholder="Search by name"
       />
